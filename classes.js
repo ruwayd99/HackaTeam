@@ -1,14 +1,45 @@
 class UserAccount {
-    constructor(firstName, lastName, userName, email, phoneNumber, password, userDetails) {
-            this.firstName = firstName; //String
-            this.lastName = lastName; //String
+    constructor(userName, password) {
+            this.firstName = null; //String
+            this.lastName = null; //String
             this.userName = userName; //String
-            this.email = email; //String
-            this.phoneNumber = phoneNumber; //String
+            this.email = null; //String
+            this.phoneNumber = null; //String
             this.password = password; //String
-            this.UserDetails = userDetails; //UserDetails object
+            this.userDetails = null; //UserDetails object
             this.team = null; //Team object
       }
+
+      //accessor property(setter)
+    set setFirstName(firstName) {
+        this.firstName = firstName;
+    }
+
+    //accessor property(setter)
+    set setLastName(lastName) {
+        this.lastName = lastName;
+    }
+
+    //accessor property(setter)
+    set setEmail(email) {
+        this.email = email;
+    }
+
+    //accessor property(setter)
+    set setPhoneNumber(phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    //accessor property(setter)
+    set setUserDetails(userDetails) {
+        this.userDetails = userDetails;
+    }
+
+    set setTeam(team) {
+        this.team = team;
+    }
+
+
     }
     
       class Team {
@@ -23,8 +54,7 @@ class UserAccount {
     
     class UserDetails {
         constructor(experienceLevel, languages, interests, 
-            hackathon, seriousness, checkboxGoals, stringGoals,
-             hasTeam) {
+            hackathon, seriousness, checkboxGoals, stringGoals) {
                 this.experienceLevel = experienceLevel; //Experience level enum
                 this.languages = languages; //List of String
                 this.interests = interests; //List of String
@@ -32,7 +62,6 @@ class UserAccount {
                 this.seriousness = seriousness; //int 1-10
                 this.checkboxGoals = checkboxGoals; //ListofGoals
                 this.stringGoals = stringGoals; //String
-                this.hasTeam = hasTeam; //Boolean
                 this.aboutMe = null; //String
              }
     }
@@ -40,8 +69,6 @@ class UserAccount {
     // Modifies: A given team and a User
     // Requires: A team that is not full
     // Effects: if has team returns true, prompt the user if they do indeed want to leave their team
-    function()
-    // if functio
     
     //modifies: both users teams as well as creates a new team
     //requires: userAccounts that are both not on teams
@@ -53,6 +80,14 @@ class UserAccount {
         u2.userDetails.hasTeam = false;
         u1.team = newTeam;
         u2.team = newTeam;
+    }
+
+    // Effects: If userAccount is on a team return true
+    function onTeam(u1) {
+        if (u1.team == nulll) {
+            return false
+        }
+        return true;
     }
     
     
