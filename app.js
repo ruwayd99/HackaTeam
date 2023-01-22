@@ -1,4 +1,5 @@
 var usernameFinal = null;
+var data = null;
 class UserAccount {
   constructor(userName, password) {
           this.firstName = null; //String
@@ -163,7 +164,8 @@ app.post('/login', async (req, res) => {
   const coll = db.collection("User-sign_in");
 
   // Find the user in the collection
-  const user = await coll.findOne({ userName: req.body.username });
+  usernameFinal = req.body.username;
+  const user = await coll.findOne({ userName: usernameFinal });
   if(!user){
     res.sendFile(__dirname + "/failure.html");
     client.close();
@@ -209,20 +211,33 @@ app.post('/user-details', async (req, res) => {
     userDetails: userDet,
     algoScore: userScore,
   } });
-  res.send("User information added!");
+  res.sendFile(__dirname + "/main-page.html");
   client.close();
 });
 
-app.get('/main-page', async (req, res) => {
-  // Connect to the MongoDB cluster
+app.get('/data', async (req, res) => {
   const client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
   const db = client.db("User_info");
   const coll = db.collection("User-sign_in");
-
-  // Find all the documents in the collection
-  const data = await coll.find({}).toArray();
-  res.send(data[0].lastName);
-  client.close();
+ //Making the data 
+ const data = await coll.find({}).toArray();
+ for (let i = 0; i < data.length; i++) {
+   if (data[i].userName === usernameFinal) {
+     currentAlgoScore = data[i].algoScore;
+     data.splice(i, 1);
+     break;
+   }
+ }
+ //Main algorithm
+ function compare(a, b) {
+   var aalgoScore = Math.abs(currentAlgoScore - a.algoScore);
+   var balgoScore = Math.abs(currentAlgoScore - b.algoScore);
+   return aalgoScore - balgoScore;
+ }
+ data.sort(compare);
+ 
+  console.log(data);
+  res.json(data);
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0' );

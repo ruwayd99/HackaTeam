@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Fetching Example</title>
+  </head>
+  <body onload="fetchData()">
+    <h1 id="title"></h1>
+    <div id="data"></div>
+    <script>
+      function fetchData() {
+        fetch('/data')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById("title").innerHTML = data[0].userName;
+            document.getElementById("data").innerHTML = data[1].userName;
+          })
+          .catch(error => console.log(error));
+      }
+    </script>
+  </body>
+</html>
