@@ -199,8 +199,6 @@ app.post('/user-details', async (req, res) => {
   var xp = reg.body.expLevel;
   var seriousness = reg.body.seriousness;
   
-  var
-  
   await coll.insertOne(newUser);
   res.sendFile(__dirname + "/failure.html");
   client.close();
