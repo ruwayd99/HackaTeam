@@ -1,7 +1,7 @@
 # HackaTeam
 A Hackathon Team Building Website
 
-## ℹ️ Pertaining to nwHacks 2023:
+## 📜 Pertaining to nwHacks 2023:
 - We did utilise Microsoft Cloud here: hackateam. ...
 - We also created two domain names for the domain.com raffle:
     - hackateam.tech
