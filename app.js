@@ -41,10 +41,6 @@ class UserAccount {
       this.team = team;
   }
 
-  set algoScore(algoScore) {
-    this.algoScore = algoScore;
-  }
-
 
   }
   
