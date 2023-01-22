@@ -184,23 +184,47 @@ app.post("/failure", function(req, res){
   res.redirect("/login");
 });
 //user-details post
-app.post('/user-details', async (req, res) => {
+// app.post('/user-details', async (req, res) => {
+//   // Connect to the MongoDB cluster
+//   const client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+//   const db = client.db("User_info");
+//   const coll = db.collection("User-sign_in");
+
+//   var newUser = new UserAccount(usernameFinal, hashedPassword,);
+//   var firstName = reg.body.firstName;
+//   var lastName = reg.body.lastName;
+//   var email = reg.body.email;
+//   var phoneNumber = reg.body.phoneNum;
+  
+//   var xp = reg.body.expLevel;
+//   var seriousness = reg.body.seriousness;
+  
+//   await coll.insertOne(newUser);
+//   res.sendFile(__dirname + "/failure.html");
+//   client.close();
+// });
+app.post('/addinfo', async (req, res) => {
   // Connect to the MongoDB cluster
   const client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
   const db = client.db("User_info");
   const coll = db.collection("User-sign_in");
 
-  var newUser = new UserAccount(usernameFinal, hashedPassword,);
-  var firstName = reg.body.firstName;
-  var lastName = reg.body.lastName;
-  var email = reg.body.email;
-  var phoneNumber = reg.body.phoneNum;
-  
-  var xp = reg.body.expLevel;
-  var seriousness = reg.body.seriousness;
-  
-  await coll.insertOne(newUser);
-  res.sendFile(__dirname + "/failure.html");
+  // Find the user in the collection by their username
+  const user = await coll.findOne({ username: req.body.username });
+  if (!user) {
+    res.send("User not found");
+    client.close();
+    return;
+  }
+  // Add the new information to the user document
+  await coll.updateOne({ username: req.body.username }, { $set: {
+    age: req.body.age,
+    address: req.body.address,
+    phone: req.body.phone,
+    interests: req.body.interests,
+  } });
+  res.send("User information added!");
   client.close();
 });
+
 app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0' );
