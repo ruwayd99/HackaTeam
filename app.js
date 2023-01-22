@@ -191,6 +191,15 @@ app.post('/user-details', async (req, res) => {
   const coll = db.collection("User-sign_in");
 
   var newUser = new UserAccount(usernameFinal, hashedPassword,);
+  var firstName = reg.body.firstName;
+  var lastName = reg.body.lastName;
+  var email = reg.body.email;
+  var phoneNumber = reg.body.phoneNum;
+  
+  var xp = reg.body.expLevel;
+  var seriousness = reg.body.seriousness;
+  
+  var
   
   await coll.insertOne(newUser);
   res.sendFile(__dirname + "/failure.html");
