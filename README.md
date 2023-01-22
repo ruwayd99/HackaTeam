@@ -1,27 +1,20 @@
 # HackaTeam
+A Hackathon Team Building Website
 
-Hackathon Pairing Website
+## ℹ️ Pertaining to nwHacks 2023:
+- We did utilise Microsoft Cloud here: hackateam. ...
+- We also created two domain names for the domain.com raffle:
+    - hackateam.tech
+    - r-key.tech
 
-How to start the server in localhost (port 3000)
-
-- Git clone the repo
-
-- Make sure node.js is installed in the device
-
--   We deployed the server using supervisor
-
--   Run the app.js file
-
-What it does:
-
+## 👋 Introduction
 -   Generally: create a personal profile (with skills, seriousness, level of hackathon experience, 
 
 -   Algorithm that is going to display users similar to your taste! 
 
 -   If you find someone, easily connect with them!
 
-Functionalities:
-
+## ✨Features
 -   Sign up and login page for user (they need a unique username) 
 
 -   All information stored in MongoDB database
@@ -33,6 +26,21 @@ Functionalities:
 -   All information are stored in the database
 
 -   Afterwards, user gets to the mainpage where they can see the top 3 hackers that best matches with their personal profile
+
+## 💻Running the code
+How to start the server in localhost (port 3000)
+
+- Git clone the repo
+
+- Make sure node.js is installed in the device
+
+-   We deployed the server using supervisor
+
+-   Run the app.js file
+
+Functionalities:
+
+## 🏗️ Things for improvement
 
  Things to consider (for future- we couldn't do a lot of the things due to time crunch sob):
 
