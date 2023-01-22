@@ -9,6 +9,7 @@ class UserAccount {
           this.password = password; //String
           this.userDetails = null; //UserDetails object
           this.team = null; //Team object
+          this.algoScore = null; //int 0-20
     }
 
     //accessor property(setter)
@@ -38,6 +39,10 @@ class UserAccount {
 
   set setTeam(team) {
       this.team = team;
+  }
+
+  set algoScore(algoScore) {
+    this.algoScore = algoScore;
   }
 
 
@@ -200,6 +205,7 @@ app.post('/user-details', async (req, res) => {
   }
 
   userDet = new UserDetails(req.body.expLevel, req.body.seriousness);
+  var userScore = req.body.expLevel + req.body.seriousness;
   // Add the new information to the user document
   await coll.updateOne({ userName: usernameFinal}, { $set: {
     firstName: req.body.firstName,
@@ -207,6 +213,7 @@ app.post('/user-details', async (req, res) => {
     email: req.body.email,
     phoneNumber: req.body.phoneNum,
     userDetails: userDet,
+    algoScore: userScore,
   } });
   res.send("User information added!");
   client.close();
