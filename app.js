@@ -1,3 +1,4 @@
+var usernameFinal = null;
 class UserAccount {
   constructor(userName, password) {
           this.firstName = null; //String
@@ -130,7 +131,7 @@ app.post('/sign-up', async (req, res) => {
   const coll = db.collection("User-sign_in");
 
   // Check if a similar username already exists in the collection
-  const usernameFinal = req.body.username;
+  usernameFinal = req.body.username;
   const existingUser = await coll.findOne({ username: usernameFinal });
   if (existingUser) {
     res.sendFile(__dirname + "/sign-up-again.html")
@@ -151,7 +152,7 @@ app.post('/sign-up', async (req, res) => {
   var newUser = new UserAccount(usernameFinal, hashedPassword);
   
   await coll.insertOne(newUser);
-  res.sendFile(__dirname + "/failure.html");
+  res.sendFile(__dirname + "/user-details.html");
   client.close();
 });
 
@@ -163,7 +164,7 @@ app.post('/login', async (req, res) => {
   const coll = db.collection("User-sign_in");
 
   // Find the user in the collection
-  const user = await coll.findOne({ username: req.body.username });
+  const user = await coll.findOne({ userName: req.body.username });
   if(!user){
     res.sendFile(__dirname + "/failure.html");
     client.close();
@@ -183,27 +184,7 @@ app.post('/login', async (req, res) => {
 app.post("/failure", function(req, res){
   res.redirect("/login");
 });
-//user-details post
-// app.post('/user-details', async (req, res) => {
-//   // Connect to the MongoDB cluster
-//   const client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
-//   const db = client.db("User_info");
-//   const coll = db.collection("User-sign_in");
-
-//   var newUser = new UserAccount(usernameFinal, hashedPassword,);
-//   var firstName = reg.body.firstName;
-//   var lastName = reg.body.lastName;
-//   var email = reg.body.email;
-//   var phoneNumber = reg.body.phoneNum;
-  
-//   var xp = req.body.expLevel;
-//   var seriousness = req.body.seriousness;
-  
-//   await coll.insertOne(newUser);
-//   res.sendFile(__dirname + "/failure.html");
-//   client.close();
-// });
-app.post('/addinfo', async (req, res) => {
+app.post('/user-details', async (req, res) => {
   // Connect to the MongoDB cluster
   const client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
   const db = client.db("User_info");
@@ -211,21 +192,21 @@ app.post('/addinfo', async (req, res) => {
 
   // Look through the database and locate the user with the same username
   // Find the user in the collection by their username
-  const user = await coll.findOne({ username: usernameFinal });
+  const user = await coll.findOne({ userName: usernameFinal });
   if (!user) {
-    res.send("User not found");
+    res.send(`${usernameFinal} not found`);
     client.close();
     return;
   }
 
   userDet = new UserDetails(req.body.expLevel, req.body.seriousness);
   // Add the new information to the user document
-  await coll.updateOne({ username: usernameFinal}, { $set: {
+  await coll.updateOne({ userName: usernameFinal}, { $set: {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     phoneNumber: req.body.phoneNum,
-    userDetails: userDet
+    userDetails: userDet,
   } });
   res.send("User information added!");
   client.close();
