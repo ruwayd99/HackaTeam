@@ -45,7 +45,10 @@
     width: 20%;
     background-color: lightgrey;
   }
-  
+
+  .SoloSection {
+    padding-top: 2em;
+  }  
   
   .overlay {
     height: 100%;

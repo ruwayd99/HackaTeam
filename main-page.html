@@ -18,7 +18,7 @@
 
 <body onload="fetchData()">
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="/">HackaTeam</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,9 +31,6 @@
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="profile.html">Profile</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" onclick="openNav()" href="#">My Team</a>
         </li>
         <li class="nav-item dropdown">
@@ -43,10 +40,10 @@
               style="width: 25px; height: 25px; border-radius: 50%;">
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">My Profile</a>
+            <a class="dropdown-item" href="#">Settings</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Sign Out</a>
           </div>
         </li>
       </ul>
@@ -60,46 +57,46 @@
   <!-- WELCOME SECTION -->
   <div class=intro>
     <h1>
-    Hey, Hacker! 👋
-  </h1>
+      Hey, Hacker! 👋
+    </h1>
   </div>
-  <!-- FILTER SECTION -->
+  <!-- FILTER SECTION
   <div class="main">
     <div class="FilterSection">
       <h1>This is the filter section</h1>
-    </div>
-    <!-- TEAM SECTION -->
-    <div class="MainSection">
-      <div class="TeamSection">
-        <h1>Match with another team</h1>
-        <button type="button" class="btn btn-link">View all teams</button>
-        <div class="card-deck team-card-deck">
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Team Apples</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+    </div> -->
+  <!-- TEAM SECTION -->
+  <div class="MainSection">
+    <div class="TeamSection">
+      <h1>Match with another team</h1>
+      <button type="button" class="btn btn-link">View all teams →</button>
+      <div class="card-deck team-card-deck">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Team Apples</h5>
+            <p class="card-text">This is a quick sample description text about the Hackathon group that you can look at
+              and join!</p>
+            <a href="#" class="btn btn-primary">Learn More</a>
           </div>
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Team Oranges</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Team Oranges</h5>
+            <p class="card-text">Information like the level of experience and the seriousness of the group will appear
+              here.</p>
+            <a href="#" class="btn btn-primary">Learn More</a>
           </div>
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Team Pears</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Team Pears</h5>
+            <p class="card-text">You would be able to click on the button to join a team and learn more about who's in
+              it!</p>
+            <a href="#" class="btn btn-primary">Learn More</a>
           </div>
         </div>
       </div>
+    </div>
       <!-- SOLO SECTION -->
       <div class="SoloSection">
         <h1>Match with other hackers</h1>
