@@ -40,8 +40,6 @@ How to start the server in localhost (port 3000)
 
 - Navigate to [localhost:3000/sign-up](localhost:3000/sign-up)
 
-Functionalities:
-
 ## 🏗️ Things for improvement
 
  Things to consider (for future- we couldn't do a lot of the things due to time crunch sob):
