@@ -199,7 +199,7 @@ app.post('/user-details', async (req, res) => {
   }
 
   userDet = new UserDetails(req.body.expLevel, req.body.seriousness);
-  var userScore = req.body.expLevel + req.body.seriousness;
+  var userScore = Number(req.body.expLevel) + Number(req.body.seriousness);
   // Add the new information to the user document
   await coll.updateOne({ userName: usernameFinal}, { $set: {
     firstName: req.body.firstName,
@@ -210,6 +210,18 @@ app.post('/user-details', async (req, res) => {
     algoScore: userScore,
   } });
   res.send("User information added!");
+  client.close();
+});
+
+app.get('/main-page', async (req, res) => {
+  // Connect to the MongoDB cluster
+  const client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+  const db = client.db("User_info");
+  const coll = db.collection("User-sign_in");
+
+  // Find all the documents in the collection
+  const data = await coll.find({}).toArray();
+  res.send(data[0].lastName);
   client.close();
 });
 
