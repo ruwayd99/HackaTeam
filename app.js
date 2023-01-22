@@ -196,8 +196,8 @@ app.post("/failure", function(req, res){
 //   var email = reg.body.email;
 //   var phoneNumber = reg.body.phoneNum;
   
-//   var xp = reg.body.expLevel;
-//   var seriousness = reg.body.seriousness;
+//   var xp = req.body.expLevel;
+//   var seriousness = req.body.seriousness;
   
 //   await coll.insertOne(newUser);
 //   res.sendFile(__dirname + "/failure.html");
@@ -209,19 +209,23 @@ app.post('/addinfo', async (req, res) => {
   const db = client.db("User_info");
   const coll = db.collection("User-sign_in");
 
+  // Look through the database and locate the user with the same username
   // Find the user in the collection by their username
-  const user = await coll.findOne({ username: req.body.username });
+  const user = await coll.findOne({ username: usernameFinal });
   if (!user) {
     res.send("User not found");
     client.close();
     return;
   }
+
+  userDet = new UserDetails(req.body.expLevel, req.body.seriousness);
   // Add the new information to the user document
-  await coll.updateOne({ username: req.body.username }, { $set: {
-    age: req.body.age,
-    address: req.body.address,
-    phone: req.body.phone,
-    interests: req.body.interests,
+  await coll.updateOne({ username: usernameFinal}, { $set: {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNum,
+    userDetails: userDet
   } });
   res.send("User information added!");
   client.close();
