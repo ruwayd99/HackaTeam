@@ -53,15 +53,14 @@ class UserAccount {
     }
     
     class UserDetails {
-        constructor(experienceLevel, languages, interests, 
-            hackathon, seriousness, checkboxGoals, stringGoals) {
+        constructor(experienceLevel, seriousness) {
                 this.experienceLevel = experienceLevel; //Experience level enum
-                this.languages = languages; //List of String
-                this.interests = interests; //List of String
-                this.hackathon = hackathon; //String
+                this.languages = null; //List of String
+                this.interests = null; //List of String
+                this.hackathon = null; //String
                 this.seriousness = seriousness; //int 1-10
-                this.checkboxGoals = checkboxGoals; //ListofGoals
-                this.stringGoals = stringGoals; //String
+                this.checkboxGoals = null; //ListofGoals
+                this.stringGoals = null; //String
                 this.aboutMe = null; //String
              }
     }
