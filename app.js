@@ -114,7 +114,7 @@ const app = express();
 const connectionString = "mongodb+srv://ruwayd99:vBGjISx3ePtxYCG3@hackateam.nvutpxw.mongodb.net/User_info?retryWrites=true&w=majority";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static("public"));
 // sign up get
 app.get("/sign-up", function(req, res){
   res.sendFile(__dirname + "/sign-up.html");
@@ -175,7 +175,7 @@ app.post('/login', async (req, res) => {
   const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
 
   if (isPasswordCorrect) {
-    res.send('Logged in successfully');
+    res.sendFile(__dirname + "/main-page.html");
   } else {
     res.sendFile(__dirname + "/failure.html");
   }

@@ -1,0 +1,99 @@
+:root {
+    --lighter: #84A98C;
+    --accent-colour: #52796F;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  nav {
+    background-color: var(--accent-colour);
+  }
+  
+  .main {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  h1 {
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--accent-colour);
+  }
+  
+  .intro {
+    padding-left: 3em;
+    padding-bottom: 3em;
+    padding-top: 3em;
+  }
+  
+  .intro h1 {
+    color: var(--lighter);
+    font-weight: 900;
+    
+  }
+  
+  .MainSection {
+    padding-left: 3em;
+  }
+  
+  .FilterSection {
+    width: 20%;
+    background-color: lightgrey;
+  }
+  
+  
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2F3E46;
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+  
+  .overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color:#2F3E46
+  ;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlay a:hover, .overlay a:focus {
+    color: #CAD2C5;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+    }
+  }

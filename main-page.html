@@ -1,21 +1,197 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Data Fetching Example</title>
-  </head>
-  <body onload="fetchData()">
-    <h1 id="title"></h1>
-    <div id="data"></div>
-    <script>
-      function fetchData() {
-        fetch('/data')
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById("title").innerHTML = data[0].userName;
-            document.getElementById("data").innerHTML = data[1].userName;
-          })
-          .catch(error => console.log(error));
-      }
-    </script>
-  </body>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Document</title>
+</head>
+
+<body onload="fetchData()">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="/">HackaTeam</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" onclick="openNav()" href="#">My Team</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+              style="width: 25px; height: 25px; border-radius: 50%;">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- WELCOME SECTION -->
+  <div class=intro>
+    <h1>
+    Hey, Hacker! 👋
+  </h1>
+  </div>
+  <!-- FILTER SECTION -->
+  <div class="main">
+    <div class="FilterSection">
+      <h1>This is the filter section</h1>
+    </div>
+    <!-- TEAM SECTION -->
+    <div class="MainSection">
+      <div class="TeamSection">
+        <h1>Match with another team</h1>
+        <button type="button" class="btn btn-link">View all teams</button>
+        <div class="card-deck team-card-deck">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Team Apples</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Team Oranges</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Team Pears</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- SOLO SECTION -->
+      <div class="SoloSection">
+        <h1>Match with other hackers</h1>
+        <button type="button" class="btn btn-link">View all solo hackers</button>
+        <div class="card-deck solo-card-deck">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title" id="solo1_name">Person 0</h5>
+              <h6 class="card-subtitle mb-2 text-muted" id="solo1_username">12345</h6>
+              <p class="card-text"><b>Experience Level: </b><span id="solo1_experience"></span><br>
+                <b>Seriousness: </b><span id="solo1_seriousness"></span></p>
+              <a href="#" class="btn btn-primary">See More</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title" id="solo2_name">Person 1</h5>
+              <h6 class="card-subtitle mb-2 text-muted" id="solo2_username">12345</h6>
+              <p class="card-text"><b>Experience Level: </b><span id="solo2_experience"></span><br>
+                <b>Seriousness: </b><span id="solo2_seriousness"></span></p>
+              <a href="#" class="btn btn-primary">See More</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title" id="solo3_name">Person 0</h5>
+              <h6 class="card-subtitle mb-2 text-muted" id="solo3_username">12345</h6>
+              <p class="card-text"><b>Experience Level: </b><span id="solo3_experience"></span><br>
+                <b>Seriousness: </b><span id="solo3_seriousness"></span></p>
+              <a href="#" class="btn btn-primary">See More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 id="overlay_title" class="card-title">Person 1</h5>
+            <h6 id="overlay_subtitle" class="card-subtitle mb-2 text-muted">12345</h6>
+            <p id="overlay_description" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="btn btn-primary">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script>
+    function openNav() {
+      document.getElementById("myNav").style.width = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav").style.width = "0%";
+    }
+  </script>
+  <script>
+    function fetchData() {
+      fetch('/data')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("solo1_name").innerHTML = data[0].firstName + " " + data[0].lastName;
+          document.getElementById("solo1_username").innerHTML = data[0].userName;
+          document.getElementById("solo1_experience").innerHTML = data[0].userDetails.experienceLevel;
+          document.getElementById("solo1_seriousness").innerHTML = data[0].userDetails.seriousness;
+          document.getElementById("solo2_name").innerHTML = data[1].firstName + " " + data[1].lastName;
+          document.getElementById("solo2_username").innerHTML = data[1].userName;
+          document.getElementById("solo2_experience").innerHTML = data[1].userDetails.experienceLevel;
+          document.getElementById("solo2_seriousness").innerHTML = data[1].userDetails.seriousness;
+          document.getElementById("solo3_name").innerHTML = data[2].firstName + " " + data[2].lastName;
+          document.getElementById("solo3_username").innerHTML = data[2].userName;
+          document.getElementById("solo3_experience").innerHTML = data[2].userDetails.experienceLevel;
+          document.getElementById("solo3_seriousness").innerHTML = data[2].userDetails.seriousness;
+        })
+        .catch(error => console.log(error));
+    }
+  </script>
+</body>
+
 </html>
