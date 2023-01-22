@@ -1,12 +1,12 @@
-#HackaTeam
+# HackaTeam
 
 Hackathon Pairing Website
 
 How to start the server in localhost (port 3000)
 
--   Git clone the repo
+- Git clone the repo
 
--   Make sure node.js is installed in the device
+- Make sure node.js is installed in the device
 
 -   We deployed the server using supervisor
 
