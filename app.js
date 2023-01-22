@@ -34,11 +34,14 @@ app.post('/sign-up', async (req, res) => {
   const password = req.body.password;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  // Insert the new user in the collection
+ /*  // Insert the new user in the collection
   const newUser = {
     username: req.body.username,
     password: hashedPassword
-  }
+  } */
+
+  var newUser = new UserAccount(req.body.username, hashedPassword);
+  
   await coll.insertOne(newUser);
   res.send("User Created!")
   client.close();
