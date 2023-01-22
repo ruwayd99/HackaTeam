@@ -1,32 +1,51 @@
-const { MongoClient } = require("mongodb");
-// Replace the uri string with your MongoDB deployment's connection string.
-const uri =
-"mongodb+srv://ruwayd99:vBGjISx3ePtxYCG3@hackateam.nvutpxw.mongodb.net/?retryWrites=true&w=majority";
+const bcrypt = require('bcrypt');
+const express = require('express');
+const path = require('path');
+const mongodb = require('mongodb');
+const app = express();
+const connectionString = "mongodb+srv://ruwayd99:vBGjISx3ePtxYCG3@hackateam.nvutpxw.mongodb.net/User_info?retryWrites=true&w=majority";
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname, 'public')));
 
-const client = new MongoClient(uri);
+app.get("/", function(req, res){
+  res.sendFile(__dirname + "/sign-in.html");
+});
+// Sign in post
+app.post('/', async (req, res) => {
+  // Hash the password
+  const saltRounds = 10;
+  const password = req.body.password;
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-async function run() {
-  try {
-    await client.connect();
-    // database and collection code goes here
-    const db = client.db("User_info");
-    const coll = db.collection("User-sign_in");
-
-    // insert code goes here
-    const docs = [
-      {name: "Halley's Comet", officialName: "1P/Halley", orbitalPeriod: 75, radius: 3.4175, mass: 2.2e14},
-      {name: "Wild2", officialName: "81P/Wild", orbitalPeriod: 6.41, radius: 1.5534, mass: 2.3e13},
-      {name: "Comet Hyakutake", officialName: "C/1996 B2", orbitalPeriod: 17000, radius: 0.77671, mass: 8.8e12}
-    ];
-
-    const result = await coll.insertMany(docs);
-
-    // display the results of your operation
-    console.log(result.insertedIds);
-
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+  // Connect to the MongoDB cluster
+  const client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+  const db = client.db("User_info");
+  const coll = db.collection("User-sign_in");
+  
+  // insert the data in the collection
+  const data = {
+    username: req.body.username,
+    password: hashedPassword
   }
-}
-run().catch(console.dir);
+  await coll.insertOne(data);
+  client.close();
+
+  res.send('Data received:\n');
+});
+
+app.listen(process.env.PORT || 3000, process.env.IP || '0.0.0.0' );
+
+// app.post('/', async function (req, res) {
+//   try{
+//     let client = await mongodb.MongoClient.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
+//     let db = client.db("User_info");
+//     let coll = db.collection("User-sign_in");
+//     await coll.insertOne(req.body);
+//     client.close();
+//     res.send('Data received:\n' + JSON.stringify(req.body));
+//   } catch(err) {
+//     console.log(err);
+//     res.send(err);
+//   }
+// 
