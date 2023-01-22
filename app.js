@@ -201,7 +201,7 @@ app.post('/user-details', async (req, res) => {
   }
 
   userDet = new UserDetails(req.body.expLevel, req.body.seriousness);
-  var userScore = req.body.expLevel + req.body.seriousness;
+  var userScore = Number(req.body.expLevel) + Number(req.body.seriousness);
   // Add the new information to the user document
   await coll.updateOne({ userName: usernameFinal}, { $set: {
     firstName: req.body.firstName,
