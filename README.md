@@ -34,9 +34,11 @@ How to start the server in localhost (port 3000)
 
 - Make sure node.js is installed in the device
 
--   We deployed the server using supervisor
+-   We deployed the server using `supervisor`
 
 -   Run the app.js file
+
+- Navigate to [localhost:3000/sign-up](localhost:3000/sign-up)
 
 Functionalities:
 
