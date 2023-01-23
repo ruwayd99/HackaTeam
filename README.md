@@ -2,7 +2,7 @@
 A Hackathon Team Building Website
 ![Image of HackaTeam website](Screenshot%202023-01-22%20120412.png)
 ## 📜 Pertaining to nwHacks 2023:
-- We did utilise Microsoft Cloud to host, but it unfortunately does not work :(
+- We did utilise Microsoft Cloud to host, but it unfortunately does not work :( here is the link: https://hackateam.azurewebsites.net/
 - We also created two domain names for the domain.com raffle:
     - hackateam.tech
     - r-key.tech
